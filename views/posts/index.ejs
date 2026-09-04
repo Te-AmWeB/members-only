@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>📋 Все посты</h1>
+
+    <% if (isLoggedIn) { %>
+        <a href="/posts/new">➕ Создать пост</a>
+        <a href="/join-club">🔐 Вступить в клуб</a>
+        <a href="/logout">🚪 Выйти</a>
+    <% } else { %>
+        <a href="/login">Войти</a> | <a href="/register">Регистрация</a>
+    <% } %>
+
+    <hr>
+
+    <% if (posts.length === 0) { %>
+        <p>😕 Пока нет постов. Будь первым!</p>
+    <% } else { %>
+        <% posts.forEach(post => { %>
+            <div class="post">
+                <h2><%= post.title %></h2>
+                <p><%= post.content %></p>
+
+                <% if (isLoggedIn && isMember) { %>
+                    <small>👤 Автор: <%= post.first_name %> <%= post.last_name %></small>
+                <% } %>
+
+                <% if (isAdminUser) { %>
+                    <form method="POST" action="/posts/<%= post.id %>/delete" style="display:inline;">
+                        <button type="submit">🗑️ Удалить</button>
+                    </form>
+                <% } %>
+                <hr>
+            </div>
+        <% }) %>
+    <% } %>
+</body>
+</html>
