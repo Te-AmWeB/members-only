@@ -85,3 +85,5 @@ npm install
 npm run dev
 
 https://github.com/Te-AmWeB/members-only/blob/main/Lobby.png
+
+https://github.com/Te-AmWeB/members-only/blob/main/VIP%20Lobby.png
